@@ -1,0 +1,42 @@
+{
+    "keshavadasapuram_technopark": [
+        {
+            "driver": "ramdas",
+            "break events": {
+                "lattitude": "1.1",
+                "longitude": "1.6"
+            },
+            "crash events": {
+                "lattitude": "1.1",
+                "longitude": "1.6"
+            },
+            "sharp turn": {
+                "lattitude": "1.1",
+                "longitude": "1.6"
+            },
+            "acceleration": {
+                "lattitude": "1.1",
+                "longitude": "1.6"
+            }
+        },
+        {
+            "driver": "chackochan",
+            "break events": {
+                "lattitude": "2.1",
+                "longitude": "2.6"
+            },
+            "crash events": {
+                "lattitude": "2.1",
+                "longitude": "2.6"
+            },
+            "sharp turn": {
+                "lattitude": "2.1",
+                "longitude": "2.6"
+            },
+            "acceleration": {
+                "lattitude": "2.1",
+                "longitude": "2.6"
+            }
+        }
+    ]
+}

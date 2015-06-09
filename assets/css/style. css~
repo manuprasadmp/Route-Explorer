@@ -1,0 +1,12 @@
+aside ul, aside li{
+	list-style: none;
+}
+.sub_menu{
+	display: none;
+}
+.side_nav #trip:hover .sub_menu{
+	display: block;
+}
+.header_wrap{
+	background-color: red;
+}
