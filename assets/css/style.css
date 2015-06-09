@@ -57,3 +57,12 @@ th, td {
 .home_wrap img{
 	margin-left: 14%;
 }
+/*google map*/
+#map{
+	height: 400px;
+	width: 330%;
+	position: relative;
+	overflow: hidden;
+	transform: translateZ(0px);
+	background-color: rgb(144, 134, 115);
+}
