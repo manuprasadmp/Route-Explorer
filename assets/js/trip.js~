@@ -1,7 +1,4 @@
 $(document).ready(function(){
-
-  
-    
 	$('#trip_details').on('click',function(){
 		$('.trip_info').show();
 		$('.home_wrap').hide();
@@ -17,45 +14,18 @@ $(document).ready(function(){
 
 /* google api*/
 function initialize() {
-		     var myLatlng1 = new google.maps.LatLng( 8.82,76.75);
-		     var myLatlng2 = new google.maps.LatLng( 8.87918,76.63862);
-		     var myLatlng3 = new google.maps.LatLng( 8.52,76.934);
-			 var map = new google.maps.Map(document.getElementById("map"), {
+			var map = new google.maps.Map(document.getElementById("map"), {
 			  center: {lat: pathCoords[0].lat, lng: pathCoords[0].lng},
 			  zoom: 10,
 			  mapTypeId: google.maps.MapTypeId.ROADMAP
 			});
 			
 			autoRefresh(map);
-			 var marker = new google.maps.Marker({
-		      position: myLatlng3,
-		      map: map,
-		      title: 'Hello World!'
-            });
-
-			 var marker = new google.maps.Marker({
-		      position: myLatlng1,
-		      map: map,
-		      title: 'Hello World!'
-            });
-
-			 var marker = new google.maps.Marker({
-		      position: myLatlng2,
-		      map: map,
-		      title: 'Hello World!'
-            });
-
-
-					}	
-
+		}
 		function moveMarker(map, marker, latlng) {
 			marker.setPosition(latlng);
 			map.panTo(latlng);
 		}
-
-		
-
-
 		function autoRefresh(map) {
 			var i, route, marker;
 			
@@ -79,12 +49,6 @@ function initialize() {
 				}, 200 * i, pathCoords[i]);
 			}
 		}
-
-
-
-
-
-
 		google.maps.event.addDomListener(window, 'load', initialize);
 		var pathCoords = [
 			{
