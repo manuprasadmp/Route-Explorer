@@ -2,24 +2,42 @@
 	margin:0;
 	padding: 0;
 }
+body,.content_wrap{
+	height: 100%;
+	width: 100%;
+}
+.logo{
+	width:53px;
+	float: left;
+}
+.logo img{
+	width: 100%;
+	margin-top: 6px;
+
+}
 .trip_info{
 	float: left;
 	display: none;
 }
 aside{
-	width: 20%;
+	height: 100%;
+	position: absolute;
+	clear: both;
+	width: 15%;
 	float: left;
+	z-index: 1;
 }
 aside > ul{
 	position: relative;
 }
 aside li{
-	padding: 5%;
+    padding: 5% 0;
 	cursor: pointer;
 	text-align: center;
 	border: 1px solid white;
 	list-style: none;
-	background-color:rgb(47, 206, 184);
+    background-color: rgb(253, 185, 83);
+	width: 100%
 }
 aside li:hover{
   background-color:rgb(25, 88, 117);
@@ -28,24 +46,59 @@ aside li:hover{
 .sub_menu{
 	position: absolute;
 	visibility: hidden;
-	right: -77px;
+    right: -85px;
     top: 0;
     cursor: pointer;
 }
-#trip:hover + .sub_menu,#trip_details:hover{
+/* .sub_menu li{
+	width: 100%;
+} */
+.sub_menu_drivers{
+	position: absolute;
+	visibility: hidden;
+    right: -87px;
+    top: 50%;
+    cursor: pointer;
+}
+#trip:hover + .sub_menu, .sub_menu:hover{
+	visibility: visible;
+}
+.sub_menu li:hover + .sub_menu_drivers, .sub_menu_drivers:hover{
 	visibility: visible;
 }
 .header_wrap{
-	text-align: center;
-	background-color: rgb(238, 199, 92);
-	padding: 1%;
+	background-color:rgb(165, 83, 42);
+}
+.header_wrap h1{
+	color: white;
+    text-shadow: -2px 0px 2px rgb(23, 20, 20);
+    padding: 12px;
+}
+.home_wrap {
+  /* display: inline-block; */
+  width: 100%;
+  position: absolute;
+  height: 100%;
+}
+.home_wrap img {
+  margin: 0 auto;
+  position: absolute;
+  /* display: inline; */
+  height: 100%;
+  right: 0;
+  left: 0;
+  /* float: right; */
+    width: 70%;
 }
 footer{
 	clear: both;
 }
 .social{
-	background-color: rgb(238, 199, 92);
+	background-color: rgb(165, 83, 42);
 	padding: 1%;
+	position: fixed;
+	width: 100%;
+	bottom: 0;
 }
 table, th, td {
     border: 1px solid black;
@@ -54,15 +107,15 @@ table, th, td {
 th, td {
     padding: 15px;
 }
-.home_wrap img{
+/* .home_wrap img{
 	margin-left: 14%;
-}
+} */
 /*google map*/
 #map{
 	height: 400px;
 	width: 330%;
-	position: relative;
-	overflow: hidden;
+	/*position: relative;*/
+	/*overflow: hidden;*/
 	transform: translateZ(0px);
 	background-color: rgb(144, 134, 115);
 }
