@@ -108,7 +108,7 @@ function loadMap(tripIndex) {
 
 // function mapFunctions() {
 
-			autoRefresh(map,tripList);
+			autoRefresh(map,tripList,tripIndex);
 
 			var n = tripList[i].route_details.length - 1;
 
@@ -142,7 +142,7 @@ function moveMarker(map, marker, latlng) {
 	map.panTo(latlng);
 }
 
-function autoRefresh(map,tripList) {
+function autoRefresh(map,tripList,tripIndex) {
 	var i, route, marker;
 	
 	route = new google.maps.Polyline({
@@ -156,12 +156,12 @@ function autoRefresh(map,tripList) {
 	});
 			
 	marker=new google.maps.Marker({map:map,icon:"http://maps.google.com/mapfiles/ms/micons/blue.png"});
-	for (i = 0; i < tripList[0].route_details.length; i++) {
+	for (i = 0; i < tripList[tripIndex].route_details.length; i++) {
 		setTimeout(function (coords) {
 			var latlng = new google.maps.LatLng(coords.lat, coords.lng);
 			// console.log(latlng);
 			route.getPath().push(latlng);
 			moveMarker(map, marker, latlng);
-		}, 1500 * i, tripList[0].route_details[i]);
+		}, 150 * i, tripList[tripIndex].route_details[i]);
 	}
 }
