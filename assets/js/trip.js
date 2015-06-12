@@ -100,7 +100,7 @@ function loadMap(tripIndex) {
 			 
 		     var mapOptions = {
 			  center: {lat: tripList[i].route_details[0].lat, lng: tripList[i].route_details[0].lng},
-			  zoom: 17,
+			  zoom: 15,
 			  mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
 			 map = new google.maps.Map(document.getElementById("map"), mapOptions);
@@ -155,13 +155,13 @@ function autoRefresh(map,tripList,tripIndex) {
 		map:map
 	});
 			
-	marker=new google.maps.Marker({map:map,icon:"http://maps.google.com/mapfiles/ms/micons/blue.png"});
+	marker=new google.maps.Marker({map:map,icon:"http://maps.google.com/mapfiles/kml/shapes/cycling.png"});
 	for (i = 0; i < tripList[tripIndex].route_details.length; i++) {
 		setTimeout(function (coords) {
 			var latlng = new google.maps.LatLng(coords.lat, coords.lng);
 			// console.log(latlng);
 			route.getPath().push(latlng);
 			moveMarker(map, marker, latlng);
-		}, 150 * i, tripList[tripIndex].route_details[i]);
+		}, 200 * i, tripList[tripIndex].route_details[i]);
 	}
 }
