@@ -137,7 +137,8 @@ th, td {
 }
 /*google map*/
 #map{
-	height: 299px;
+  height: 370px;
+
 	/*width: 72%;*/
 	/*position: relative;*/
 	/*overflow: hidden;*/
@@ -181,4 +182,6 @@ th, td {
 	text-decoration: none;
 	color: white
 }
-
+.trip {
+	display: none;
+}

@@ -1,13 +1,20 @@
-$(document).ready(function(){
-    
-    $('.sub_menu ul').hide();
-	$('.sub_menu > span').on('click',function() {
-    	$(this).parent('.sub_menu').find(' > ul').slideToggle();
+
+
+function unique(list) {
+    var result = [];
+    $.each(list, function(i, e) {
+        if ($.inArray(e, result) == -1) result.push(e);
     });
-	$('.trip_details').on('click',function(){
-		$('.trip_info').show();
-		$('.home_wrap').hide();
-	});
+    return result;
+}
+
+$(document).ready(function(){
+	tripList = $.grep(trip, function(element,index) {
+			return element;
+		});
+    $('.sub_menu ul').hide();
+    
+
 	$.getJSON("../assets/json/map.json",function(map){
 		
 		$.each(map.keshavadasapuram_technopark,function(data){
@@ -16,37 +23,97 @@ $(document).ready(function(){
 	    });
 	});
 
+	$.getJSON("../assets/json/trip.json", function(response) {
+		var tripJSON = response;
+		var driverNames = [];
+		$.each(response.trip, function(i, elm) {
+			$.each(elm.drivers, function(id, driver) {
+				driverNames.push(driver.name);
+			});
+		});
+		driverNames = unique(driverNames);
+		var driverMenu = "";
+		$.each(driverNames, function(i, name) {
+			var content = $('<li class="sub_menu">'+
+				'<span>'+name+'</span>'+
+				'<ul class="trip"></ul></li>');
+			var tripArray = "";
+			$.each(tripJSON.trip, function(i, elm){
+				$.each(elm.drivers, function(j, driver){
+					if (driver.name === name) {
+						// tripArray.push(elm.name);
+						tripArray = "<li class='trip_details' data-index="+i+" >"+elm.name+"</li>";
+						content.find(".trip").append(tripArray);
+					}
+				});
+			});
+			
+			$('.drivers').append(content);
+		});	
+		
+	    $('.sub_menu > span').off("click").on('click',function() {
+	        $(this).parent('.sub_menu').find(' > ul').slideToggle();
+	    });
+	    $('.trip_details').on('click',function(){
+	    	var tripIndex=$(this).data("index");
+			$('.trip_info').show(1, function() {
+				loadMap(tripIndex);
+			});
+		$('.home_wrap').hide();
+		
+	});
+	});
+
+// for(var i=0;i<tripList.length;i++){
+// 	for(var n=0;n<tripList[i].drivers.length;n++){
+// 		var d=tripList[i].drivers.length;
+// 		console.log(d);
+// 		$('.drivers').append('<li class="sub_menu"><span>'+tripList[i].drivers[n].name+'</span><ul class="trip'+i'"></ul></li>');
+
+// 		for(var x=0;x<tripList.length;x++){
+// 			for(var j=0;j<tripList.drivers.length;j++){
+// 				if(tripList[i].drivers[n].name==tripList[x].drivers[j].name){
+// 					$(".trip'+i'").append('<li class="trip_details">'+tripList[x].name+'</li>');
+// 				}
+// 			}	
+// 		}
+// 	}
+// }
 
 
 });
 
 /* google api*/
-function initialize() {
-	var tripList = $.grep(trip, function(element,index) {
+
+var tripList;
+
+function loadMap(tripIndex) {
+	        var i=tripIndex;
+	        console.log(i);
+			tripList = $.grep(trip, function(element,index) {
 			return element;
-		})
-
-
-
-	console.log(tripList[0].route_details.length);
-
+		});
+	
 		     // var myLatlng1 = new google.maps.LatLng( 8.82,76.75);
 		     // var myLatlng2 = new google.maps.LatLng( 8.87918,76.63862);
 		     
 			 
-
-			 var map = new google.maps.Map(document.getElementById("map"), {
-			  center: {lat: tripList[0].route_details[0].lat, lng: tripList[0].route_details[0].lng},
-			  zoom: 16,
+		     var mapOptions = {
+			  center: {lat: tripList[i].route_details[0].lat, lng: tripList[i].route_details[0].lng},
+			  zoom: 17,
 			  mapTypeId: google.maps.MapTypeId.ROADMAP
-			});
-			
+			};
+			 map = new google.maps.Map(document.getElementById("map"), mapOptions);
+// }
+
+// function mapFunctions() {
+
 			autoRefresh(map,tripList);
 
-				var n = tripList[0].route_details.length - 1;
+			var n = tripList[i].route_details.length - 1;
 
-			var myLatlng1 = new google.maps.LatLng( tripList[0].route_details[0].lat ,tripList[0].route_details[0].lng);
-			var myLatlng2 = new google.maps.LatLng( tripList[0].route_details[n].lat ,tripList[0].route_details[n].lng);
+			var myLatlng1 = new google.maps.LatLng( tripList[i].route_details[0].lat ,tripList[i].route_details[0].lng);
+			var myLatlng2 = new google.maps.LatLng( tripList[i].route_details[n].lat ,tripList[i].route_details[n].lng);
 			var marker = new google.maps.Marker({
 		      position: myLatlng1,
 		      map: map,
@@ -58,6 +125,15 @@ function initialize() {
 		      map: map,
 		      title: 'TripStop!'
             });
+
+
+
+			 // var marker = new google.maps.Marker({
+		  //     position: myLatlng2,
+		  //     map: map,
+		  //     title: 'Hello World!'
+    //         });
+
 
 }	
 
@@ -72,7 +148,7 @@ function autoRefresh(map,tripList) {
 	route = new google.maps.Polyline({
 		path: [],
 		geodesic : true,
-		strokeColor: '#FF0000',
+		strokeColor: '#2E64FE',
 		strokeOpacity: 1.0,
 		strokeWeight: 5,
 		editable: false,
@@ -83,12 +159,9 @@ function autoRefresh(map,tripList) {
 	for (i = 0; i < tripList[0].route_details.length; i++) {
 		setTimeout(function (coords) {
 			var latlng = new google.maps.LatLng(coords.lat, coords.lng);
-			console.log(latlng);
+			// console.log(latlng);
 			route.getPath().push(latlng);
 			moveMarker(map, marker, latlng);
-		}, 800 * i, tripList[0].route_details[i]);
+		}, 1500 * i, tripList[0].route_details[i]);
 	}
 }
-
-google.maps.event.addDomListener(window, 'load', initialize);
-		
