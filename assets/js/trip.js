@@ -37,7 +37,7 @@ function initialize() {
 
 			 var map = new google.maps.Map(document.getElementById("map"), {
 			  center: {lat: tripList[0].route_details[0].lat, lng: tripList[0].route_details[0].lng},
-			  zoom: 15,
+			  zoom: 16,
 			  mapTypeId: google.maps.MapTypeId.ROADMAP
 			});
 			
