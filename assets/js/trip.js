@@ -5,27 +5,32 @@ $(document).ready(function(){
 			return element;
 		});
     $('.sub_menu ul').hide();
-	$.getJSON("../assets/json/map.json",function(map){
-		$.each(map.keshavadasapuram_technopark,function(data){
-			var output='<tr><td>Break Events</td><td>'+this.breakevents.lattitude+'</td><td>'+this.breakevents.longitude+'</td></tr><tr><td>Crash Events</td><td>'+this.crashevents.lattitude+'</td><td>'+this.crashevents.longitude+'</td></tr><tr><td>Sharp Turns</td><td>'+this.sharpturn.lattitude+'</td><td>'+this.sharpturn.longitude+'</td></tr><tr><td>Acceleration</td><td>'+this.acceleration.lattitude+'</td><td>'+this.acceleration.longitude+'</td></tr>';
-			$(".event_details thead").append(output);
-	    });
-	});
 	$.getJSON("../assets/json/trip.json", function(response) {
-
-
-		// $.each(response.trip,function(data){
-		// 	$.each(data.drivers,function)
-		// 	var output='<tr><td>Break Events</td><td>'+this.breakevents.lattitude+'</td><td>'+this.breakevents.longitude+'</td></tr><tr><td>Crash Events</td><td>'+this.crashevents.lattitude+'</td><td>'+this.crashevents.longitude+'</td></tr><tr><td>Sharp Turns</td><td>'+this.sharpturn.lattitude+'</td><td>'+this.sharpturn.longitude+'</td></tr><tr><td>Acceleration</td><td>'+this.acceleration.lattitude+'</td><td>'+this.acceleration.longitude+'</td></tr>';
-		// 	$(".event_details thead").append(output);
-	 //    });
 		var tripJSON = response;
 		var driverNames = [];
 		$.each(response.trip, function(i, trips) {
 			$.each(trips.drivers, function(id, driver) {
+				var output;
 				driverNames.push(driver.name);
+				$.each(driver.break_events, function(){
+					output='<tr><td>Break Event</td><td>'+this.lat+'</td><td>'+this.lng+'</td></tr>';
+					$(".event_details tbody").append(output);
+				});
+				$.each(driver.stop_events, function(){
+					output='<tr><td>Stop Event</td><td>'+this.lat+'</td><td>'+this.lng+'</td></tr>';
+					$(".event_details tbody").append(output);
+				});
+				$.each(driver.sharp_turn, function(){
+					output='<tr><td>Sharp Turn</td><td>'+this.lat+'</td><td>'+this.lng+'</td></tr>';
+					$(".event_details tbody").append(output);
+				});
+				$.each(driver.acceleration, function(){
+					output='<tr><td>Acceleration</td><td>'+this.lat+'</td><td>'+this.lng+'</td></tr>';
+					$(".event_details tbody").append(output);
+				});
 			});
 		});
+		$('#events_table').dataTable();
 		driverNames = unique(driverNames);
 		var driverMenu = "";
 		$.each(driverNames, function(i, name) {
@@ -50,7 +55,6 @@ $(document).ready(function(){
 	    $('.trip_details').on('click',function(){
 	    	var tripIndex=$(this).data("index");
 	    	var driverIndex=$(this).data("driver");
-	    	console.log(driverIndex);
 			$('.trip_info').show(1, function() {
 				loadMap(tripIndex,driverIndex);
 			});
@@ -58,7 +62,6 @@ $(document).ready(function(){
 	    });
 	});
 });
-
 
 function unique(list) {
     var result = [];
@@ -73,64 +76,55 @@ function unique(list) {
 var tripList;
 
 function loadMap(tripIndex,driverIndex) {
-	        var i=tripIndex;
-	        var d=driverIndex;
-	        tripList = $.grep(trip, function(element,index) {
-			return element;
-		});
-			
-
-
-		     
-			 
-		     var mapOptions = {
-			  center: {lat: tripList[i].route_details[0].lat, lng: tripList[i].route_details[0].lng},
-			  zoom: 15,
-			  mapTypeId: google.maps.MapTypeId.ROADMAP
-			};
-			 map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-
+	var i=tripIndex;
+	var d=driverIndex;
+    tripList = $.grep(trip, function(element,index) {
+		return element;
+	});
+    var mapOptions = {
+		center: {lat: tripList[i].route_details[0].lat, lng: tripList[i].route_details[0].lng},
+		zoom: 15,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+	map = new google.maps.Map(document.getElementById("map"), mapOptions);
 // function mapFunctions() {
+	autoRefresh(map,tripList,tripIndex);
+	var n = tripList[i].route_details.length - 1;
+	var myLatlng1 = new google.maps.LatLng( tripList[i].route_details[0].lat ,tripList[i].route_details[0].lng);
+	var myLatlng2 = new google.maps.LatLng( tripList[i].route_details[n].lat ,tripList[i].route_details[n].lng);
+	var marker = new google.maps.Marker({
+        position: myLatlng1,
+		map: map,
+		icon:"http://maps.google.com/mapfiles/kml/paddle/S.png",
+		title: 'TripStart!'
+    });
+	var marker = new google.maps.Marker({
+		position: myLatlng2,
+		map: map,
+		icon:"http://maps.google.com/mapfiles/kml/paddle/S.png",
+		title: 'TripStop!'
+    });
 
-			autoRefresh(map,tripList,tripIndex);
-
-			var n = tripList[i].route_details.length - 1;
-
-			var myLatlng1 = new google.maps.LatLng( tripList[i].route_details[0].lat ,tripList[i].route_details[0].lng);
-			var myLatlng2 = new google.maps.LatLng( tripList[i].route_details[n].lat ,tripList[i].route_details[n].lng);
-			var marker = new google.maps.Marker({
-		      position: myLatlng1,
-		      map: map,
-		      title: 'TripStart!'
-            });
-
-			 var marker = new google.maps.Marker({
-		      position: myLatlng2,
-		      map: map,
-		      title: 'TripStop!'
-            });
-
-			$.each(tripList[i].drivers[d].break_events,function(){
-				console.log(this.lat);
-				var breakEvents=new google.maps.LatLng( this.lat ,this.lng);
-				var marker = new google.maps.Marker({
-			        position: breakEvents,
-			        map: map,
-			        title: 'breakevent!'
-                });
-			});
-			$.each(tripList[i].drivers[d].sharp_turn,function(){
-				console.log(this.lat);
-				var sharpTurn=new google.maps.LatLng( this.lat ,this.lng);
-				var marker = new google.maps.Marker({
-			        position: sharpTurn,
-			        map: map,
-			        title: 'sharpturn!'
-                });
-			});
-
-
+	$.each(tripList[i].drivers[d].break_events,function(){
+		console.log(this.lat);
+		var breakEvents=new google.maps.LatLng( this.lat ,this.lng);
+		var marker = new google.maps.Marker({
+	        position: breakEvents,
+	        map: map,
+	        icon:"http://maps.google.com/mapfiles/kml/pal4/icon53.png",
+	        title: 'breakevent!'
+        });
+	});
+	$.each(tripList[i].drivers[d].sharp_turn,function(){
+		console.log(this.lat);
+		var sharpTurn=new google.maps.LatLng( this.lat ,this.lng);
+		var marker = new google.maps.Marker({
+	        position: sharpTurn,
+	        map: map,
+	        icon:"http://maps.google.com/mapfiles/kml/pal3/icon51.png",
+	        title: 'sharpturn!'
+        });
+	});
 }	
 
 function moveMarker(map, marker, latlng) {
@@ -144,18 +138,17 @@ function autoRefresh(map,tripList,tripIndex) {
 	route = new google.maps.Polyline({
 		path: [],
 		geodesic : true,
-		strokeColor: '#2E64FE',
+		strokeColor: '#FF0000',
 		strokeOpacity: 1.0,
 		strokeWeight: 5,
 		editable: false,
 		map:map
 	});
 			
-	marker=new google.maps.Marker({map:map,icon:"http://maps.google.com/mapfiles/kml/shapes/cycling.png"});
+	marker=new google.maps.Marker({map:map,icon:"http://maps.google.com/mapfiles/kml/pal4/icon7.png"});
 	for (i = 0; i < tripList[tripIndex].route_details.length; i++) {
 		setTimeout(function (coords) {
 			var latlng = new google.maps.LatLng(coords.lat, coords.lng);
-			// console.log(latlng);
 			route.getPath().push(latlng);
 			moveMarker(map, marker, latlng);
 		}, 200 * i, tripList[tripIndex].route_details[i]);
