@@ -4,11 +4,11 @@
             "name": "tvm_kochi",
             "drivers": [
                 {
-                    "name": "ram",
+                    "name": "raj",
                     "break_events": [
                         {
-                            "lat": 1.1,
-                            "lng": 2.1
+ 			    "lng": -77.2273,
+                            "lat": 38.9156
                         },
                         {
                             "lat": 1.1,
@@ -2021,7 +2021,7 @@
                     "lng": -77.2011,
                     "lat": 38.9452,
                     "speed": 17.33
-                },
+                },  
                 {
                     "locationDescription": "LocationUpdate",
                     "lng": -77.2023,

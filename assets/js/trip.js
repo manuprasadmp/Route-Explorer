@@ -1,33 +1,28 @@
 
 
-function unique(list) {
-    var result = [];
-    $.each(list, function(i, e) {
-        if ($.inArray(e, result) == -1) result.push(e);
-    });
-    return result;
-}
-
 $(document).ready(function(){
 	tripList = $.grep(trip, function(element,index) {
 			return element;
 		});
     $('.sub_menu ul').hide();
-    
-
 	$.getJSON("../assets/json/map.json",function(map){
-		
 		$.each(map.keshavadasapuram_technopark,function(data){
 			var output='<tr><td>Break Events</td><td>'+this.breakevents.lattitude+'</td><td>'+this.breakevents.longitude+'</td></tr><tr><td>Crash Events</td><td>'+this.crashevents.lattitude+'</td><td>'+this.crashevents.longitude+'</td></tr><tr><td>Sharp Turns</td><td>'+this.sharpturn.lattitude+'</td><td>'+this.sharpturn.longitude+'</td></tr><tr><td>Acceleration</td><td>'+this.acceleration.lattitude+'</td><td>'+this.acceleration.longitude+'</td></tr>';
 			$(".event_details thead").append(output);
 	    });
 	});
-
 	$.getJSON("../assets/json/trip.json", function(response) {
+
+
+		// $.each(response.trip,function(data){
+		// 	$.each(data.drivers,function)
+		// 	var output='<tr><td>Break Events</td><td>'+this.breakevents.lattitude+'</td><td>'+this.breakevents.longitude+'</td></tr><tr><td>Crash Events</td><td>'+this.crashevents.lattitude+'</td><td>'+this.crashevents.longitude+'</td></tr><tr><td>Sharp Turns</td><td>'+this.sharpturn.lattitude+'</td><td>'+this.sharpturn.longitude+'</td></tr><tr><td>Acceleration</td><td>'+this.acceleration.lattitude+'</td><td>'+this.acceleration.longitude+'</td></tr>';
+		// 	$(".event_details thead").append(output);
+	 //    });
 		var tripJSON = response;
 		var driverNames = [];
-		$.each(response.trip, function(i, elm) {
-			$.each(elm.drivers, function(id, driver) {
+		$.each(response.trip, function(i, trips) {
+			$.each(trips.drivers, function(id, driver) {
 				driverNames.push(driver.name);
 			});
 		});
@@ -41,61 +36,51 @@ $(document).ready(function(){
 			$.each(tripJSON.trip, function(i, elm){
 				$.each(elm.drivers, function(j, driver){
 					if (driver.name === name) {
-						// tripArray.push(elm.name);
-						tripArray = "<li class='trip_details' data-index="+i+" >"+elm.name+"</li>";
+						tripArray = "<li class='trip_details' data-index="+i+" data-driver="+j+" >"+elm.name+"</li>";
 						content.find(".trip").append(tripArray);
 					}
 				});
 			});
-			
 			$('.drivers').append(content);
 		});	
 		
-	    $('.sub_menu > span').off("click").on('click',function() {
+	    $('.sub_menu > span').on('click',function() {
 	        $(this).parent('.sub_menu').find(' > ul').slideToggle();
 	    });
 	    $('.trip_details').on('click',function(){
 	    	var tripIndex=$(this).data("index");
+	    	var driverIndex=$(this).data("driver");
+	    	console.log(driverIndex);
 			$('.trip_info').show(1, function() {
-				loadMap(tripIndex);
+				loadMap(tripIndex,driverIndex);
 			});
-		$('.home_wrap').hide();
-		
+			$('.home_wrap').hide();
+	    });
 	});
-	});
-
-// for(var i=0;i<tripList.length;i++){
-// 	for(var n=0;n<tripList[i].drivers.length;n++){
-// 		var d=tripList[i].drivers.length;
-// 		console.log(d);
-// 		$('.drivers').append('<li class="sub_menu"><span>'+tripList[i].drivers[n].name+'</span><ul class="trip'+i'"></ul></li>');
-
-// 		for(var x=0;x<tripList.length;x++){
-// 			for(var j=0;j<tripList.drivers.length;j++){
-// 				if(tripList[i].drivers[n].name==tripList[x].drivers[j].name){
-// 					$(".trip'+i'").append('<li class="trip_details">'+tripList[x].name+'</li>');
-// 				}
-// 			}	
-// 		}
-// 	}
-// }
-
-
 });
+
+
+function unique(list) {
+    var result = [];
+    $.each(list, function(i, e) {
+        if ($.inArray(e, result) == -1) result.push(e);
+    });
+    return result;
+}
 
 /* google api*/
 
 var tripList;
 
-function loadMap(tripIndex) {
+function loadMap(tripIndex,driverIndex) {
 	        var i=tripIndex;
-	        console.log(i);
-			tripList = $.grep(trip, function(element,index) {
+	        var d=driverIndex;
+	        tripList = $.grep(trip, function(element,index) {
 			return element;
 		});
-	
-		     // var myLatlng1 = new google.maps.LatLng( 8.82,76.75);
-		     // var myLatlng2 = new google.maps.LatLng( 8.87918,76.63862);
+			
+
+
 		     
 			 
 		     var mapOptions = {
@@ -104,7 +89,7 @@ function loadMap(tripIndex) {
 			  mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
 			 map = new google.maps.Map(document.getElementById("map"), mapOptions);
-// }
+
 
 // function mapFunctions() {
 
@@ -126,13 +111,24 @@ function loadMap(tripIndex) {
 		      title: 'TripStop!'
             });
 
-
-
-			 // var marker = new google.maps.Marker({
-		  //     position: myLatlng2,
-		  //     map: map,
-		  //     title: 'Hello World!'
-    //         });
+			$.each(tripList[i].drivers[d].break_events,function(){
+				console.log(this.lat);
+				var breakEvents=new google.maps.LatLng( this.lat ,this.lng);
+				var marker = new google.maps.Marker({
+			        position: breakEvents,
+			        map: map,
+			        title: 'breakevent!'
+                });
+			});
+			$.each(tripList[i].drivers[d].sharp_turn,function(){
+				console.log(this.lat);
+				var sharpTurn=new google.maps.LatLng( this.lat ,this.lng);
+				var marker = new google.maps.Marker({
+			        position: sharpTurn,
+			        map: map,
+			        title: 'sharpturn!'
+                });
+			});
 
 
 }	

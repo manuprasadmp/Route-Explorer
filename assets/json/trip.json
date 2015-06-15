@@ -7,8 +7,8 @@
                     "name": "raj",
                     "break_events": [
                         {
-                            "lat": 1.1,
-                            "lng": 2.1
+ 			    "lng": -77.2273,
+                            "lat": 38.9156
                         },
                         {
                             "lat": 1.1,
