@@ -1,0 +1,68 @@
+*{
+	margin:0;
+	padding: 0;
+}
+.trip_info{
+	float: left;
+	display: none;
+}
+aside{
+	width: 20%;
+	float: left;
+}
+aside > ul{
+	position: relative;
+}
+aside li{
+	padding: 5%;
+	cursor: pointer;
+	text-align: center;
+	border: 1px solid white;
+	list-style: none;
+	background-color:rgb(47, 206, 184);
+}
+aside li:hover{
+  background-color:rgb(25, 88, 117);
+  color: white;
+}
+.sub_menu{
+	position: absolute;
+	visibility: hidden;
+	right: -77px;
+    top: 0;
+    cursor: pointer;
+}
+#trip:hover + .sub_menu,#trip_details:hover{
+	visibility: visible;
+}
+.header_wrap{
+	text-align: center;
+	background-color: rgb(238, 199, 92);
+	padding: 1%;
+}
+footer{
+	clear: both;
+}
+.social{
+	background-color: rgb(238, 199, 92);
+	padding: 1%;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 15px;
+}
+.home_wrap img{
+	margin-left: 14%;
+}
+/*google map*/
+#map{
+	height: 400px;
+	width: 330%;
+	position: relative;
+	overflow: hidden;
+	transform: translateZ(0px);
+	background-color: rgb(144, 134, 115);
+}
