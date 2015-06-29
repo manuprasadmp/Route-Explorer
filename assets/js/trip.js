@@ -13,19 +13,19 @@ $(document).ready(function(){
 				var output;
 				driverNames.push(driver.name);
 				$.each(driver.break_events, function(){
-					output='<tr><td>Break Event</td><td>'+this.lat+'</td><td>'+this.lng+'</td></tr>';
+					output='<tr><td><img src="'+tripJSON.icon.break_events+'">Break Event</td><td>'+this.lat+'</td><td>'+this.lng+'</td></tr>';
 					$(".event_details tbody").append(output);
 				});
 				$.each(driver.stop_events, function(){
-					output='<tr><td>Stop Event</td><td>'+this.lat+'</td><td>'+this.lng+'</td></tr>';
+					output='<tr><td><img src="'+tripJSON.icon.stop_events+'">Stop Event</td><td>'+this.lat+'</td><td>'+this.lng+'</td></tr>';
 					$(".event_details tbody").append(output);
 				});
 				$.each(driver.sharp_turn, function(){
-					output='<tr><td>Sharp Turn</td><td>'+this.lat+'</td><td>'+this.lng+'</td></tr>';
+					output='<tr><td><img src="'+tripJSON.icon.sharp_turn+'">Sharp Turn</td><td>'+this.lat+'</td><td>'+this.lng+'</td></tr>';
 					$(".event_details tbody").append(output);
 				});
 				$.each(driver.acceleration, function(){
-					output='<tr><td>Acceleration</td><td>'+this.lat+'</td><td>'+this.lng+'</td></tr>';
+					output='<tr><td><img src="'+tripJSON.icon.acceleration+'">Acceleration</td><td>'+this.lat+'</td><td>'+this.lng+'</td></tr>';
 					$(".event_details tbody").append(output);
 				});
 			});
@@ -104,27 +104,76 @@ function loadMap(tripIndex,driverIndex) {
 		icon:"http://maps.google.com/mapfiles/kml/paddle/S.png",
 		title: 'TripStop!'
     });
-
 	$.each(tripList[i].drivers[d].break_events,function(){
-		console.log(this.lat);
-		var breakEvents=new google.maps.LatLng( this.lat ,this.lng);
-		var marker = new google.maps.Marker({
-	        position: breakEvents,
-	        map: map,
-	        icon:"http://maps.google.com/mapfiles/kml/pal4/icon53.png",
-	        title: 'breakevent!'
-        });
+		var latlng = new google.maps.LatLng(this.lat, this.lng);
+		var info="<b>Break Event</b> <br/>";
+		var eventIcon="http://maps.google.com/mapfiles/kml/pal4/icon53.png";
+        codeLatLng(latlng,info,eventIcon);        
 	});
 	$.each(tripList[i].drivers[d].sharp_turn,function(){
-		console.log(this.lat);
-		var sharpTurn=new google.maps.LatLng( this.lat ,this.lng);
-		var marker = new google.maps.Marker({
-	        position: sharpTurn,
-	        map: map,
-	        icon:"http://maps.google.com/mapfiles/kml/pal3/icon51.png",
-	        title: 'sharpturn!'
-        });
+		var latlng = new google.maps.LatLng(this.lat, this.lng);
+		var info="<b>Sharp Turn</b> <br/>";
+		var eventIcon="https://maps.gstatic.com/mapfiles/ms2/micons/campground.png";
+        codeLatLng(latlng,info,eventIcon); 
 	});
+	$.each(tripList[i].drivers[d].stop_events,function(){
+		var latlng = new google.maps.LatLng(this.lat, this.lng);
+		var info="<b>Stop Event</b> <br/>";
+		var eventIcon="http://maps.google.com/mapfiles/kml/pal3/icon51.png";
+        codeLatLng(latlng,info,eventIcon);         
+	});
+	$.each(tripList[i].drivers[d].acceleration,function(){
+		var latlng = new google.maps.LatLng(this.lat, this.lng);
+		var info="<b>Acceleration</b> <br/>";
+		var eventIcon="https://maps.gstatic.com/mapfiles/ms2/micons/flag.png";
+        codeLatLng(latlng,info,eventIcon); 
+	});
+	/*****/
+var geocoder;
+var map;
+var infowindow = new google.maps.InfoWindow();
+var marker;
+// function initialize() {
+  // geocoder = new google.maps.Geocoder();
+
+
+function codeLatLng(latlng,info,eventIcon) {
+	 geocoder = new google.maps.Geocoder();
+    // var latlng = new google.maps.LatLng(lat, lng);
+  geocoder.geocode({'latLng': latlng}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      if (results[1]) {
+
+
+      	// var position=new google.maps.LatLng(lat ,lng);
+		var marker = new google.maps.Marker({
+	        position: latlng,
+	        map: map,
+	        icon:eventIcon
+	        // title: 'sharpturn!'
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+        	 infowindow.setContent(info);
+        	 infowindow.setContent(info+results[1].formatted_address);
+             infowindow.open(map, marker, info);
+        // infowindow.setContent(results[1].formatted_address);
+        // infowindow.open(map, this);
+        // infowindow.open(map, marker);
+      });	
+
+        
+        
+      } else {
+        alert('No results found');
+      }
+    } else {
+      alert('Geocoder failed due to: ' + status);
+    }
+  });
+}
+
+	/***/
 }	
 
 function moveMarker(map, marker, latlng) {

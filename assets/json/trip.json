@@ -1,4 +1,10 @@
 {
+    "icon": {
+        "break_events": "http://maps.google.com/mapfiles/kml/pal4/icon53.png",
+        "stop_events": "http://maps.google.com/mapfiles/kml/pal3/icon51.png",
+        "sharp_turn": "https://maps.gstatic.com/mapfiles/ms2/micons/campground.png",
+        "acceleration": "https://maps.gstatic.com/mapfiles/ms2/micons/flag.png"
+    },
     "trip": [
         {
             "name": "tvm_kochi",
@@ -17,8 +23,8 @@
                     ],
                     "stop_events": [
                         {
-                            "lat": 2.1,
-                            "lng": 2.2
+                            "lng": -77.3849,
+                            "lat": 38.9497
                         }
                     ],
                     "sharp_turn": [
@@ -48,15 +54,11 @@
                     ],
                     "stop_events": [
                         {
-                            "lat": 2.1,
-                            "lng": 2.2
+                            "lng": -77.3826,
+                            "lat": 38.9504
                         }
                     ],
                     "sharp_turn": [
-                        {
-                            "lat": 2.1,
-                            "lng": 2.2
-                        },
                         {
                             "lng": -77.1535,
                             "lat": 38.9384
@@ -64,12 +66,12 @@
                     ],
                     "acceleration": [
                         {
-                            "lat": 2.1,
-                            "lng": 2.2
+                            "lng": -77.3784,
+                            "lat": 38.949
                         },
                         {
-                            "lat": 1.2,
-                            "lng": 2.1
+                            "lng": -77.3774,
+                            "lat": 38.9484
                         }
                     ]
                 }
@@ -2719,8 +2721,8 @@
                     ],
                     "stop_events": [
                         {
-                            "lat": 2.1,
-                            "lng": 2.2
+                            "lng": -77.2276,
+                            "lat": 38.9152
                         }
                     ],
                     "sharp_turn": [
