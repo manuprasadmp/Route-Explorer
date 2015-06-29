@@ -1,4 +1,4 @@
-var trip =  [
+ trip=[
         {
             "name": "tvm_kochi",
             "drivers": [
@@ -6,33 +6,31 @@ var trip =  [
                     "name": "ram",
                     "break_events": [
                         {
-                    "lng": -77.2192,
-                    "lat": 38.9491
+                            "lng": -77.2192,
+                            "lat": 38.9491
                         },
                         {
-                    "lng": -77.2563,
-                    "lat": 38.9766
+                            "lng": -77.2563,
+                            "lat": 38.9766
                         }
                     ],
                     "stop_events": [
                         {
-                            "lat": 2.1,
-                            "lng": 2.2
+                            "lng": -77.3849,
+                            "lat": 38.9497
                         }
                     ],
                     "sharp_turn": [
-    
                         {
-                    "lng": -77.1535,
-                    "lat": 38.9384
+                            "lng": -77.1535,
+                            "lat": 38.9384
                         }
                     ],
                     "acceleration": [
                         {
-                    "lng": -77.3755,
-                    "lat": 38.9506
+                            "lng": -77.3755,
+                            "lat": 38.9506
                         }
-
                     ]
                 },
                 {
@@ -40,37 +38,33 @@ var trip =  [
                     "break_events": [
                         {
                             "lng": -77.3842,
-                             "lat": 38.9502,
+                            "lat": 38.9502
                         },
                         {
-                    "lng": -77.2563,
-                    "lat": 38.9766
+                            "lng": -77.2563,
+                            "lat": 38.9766
                         }
                     ],
                     "stop_events": [
                         {
-                            "lat": 2.1,
-                            "lng": 2.2
+                            "lng": -77.3826,
+                            "lat": 38.9504
                         }
                     ],
                     "sharp_turn": [
                         {
-                            "lat": 2.1,
-                            "lng": 2.2
-                        },
-                        {
-                    "lng": -77.1535,
-                    "lat": 38.9384
+                            "lng": -77.1535,
+                            "lat": 38.9384
                         }
                     ],
                     "acceleration": [
                         {
-                            "lat": 2.1,
-                            "lng": 2.2
+                            "lng": -77.3784,
+                            "lat": 38.949
                         },
                         {
-                            "lat": 1.2,
-                            "lng": 2.1
+                            "lng": -77.3774,
+                            "lat": 38.9484
                         }
                     ]
                 }
@@ -2710,8 +2704,8 @@ var trip =  [
                     "name": "ronald",
                     "break_events": [
                         {
-                            "lat": 6.8,
-                            "lng": 1.4
+          			"lng": -77.2283,
+                    		"lat": 38.9163
                         },
                         {
                             "lat": 3.5,
@@ -2720,8 +2714,8 @@ var trip =  [
                     ],
                     "stop_events": [
                         {
-                            "lat": 2.1,
-                            "lng": 2.2
+                            "lng": -77.2276,
+                            "lat": 38.9152
                         }
                     ],
                     "sharp_turn": [
@@ -2740,290 +2734,151 @@ var trip =  [
                             "lat": 38.9166
                         },
                         {
-                            "lat": 1.2,
-                            "lng": 2.1
+				"lng": -77.2275,
+                    		"lat": 38.9154
                         }
                     ]
                 }
             ],
             "route_details": [
-                        {
-                            "locationDescription": "TripStart",
-                            "lng": -77.2301,
-                            "lat": 38.9175,
-                            "speed": 9.68
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.23,
-                            "lat": 38.9174,
-                            "speed": 11.02
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2294,
-                            "lat": 38.917,
-                            "speed": 10.21
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2292,
-                            "lat": 38.9169,
-                            "speed": 2.86
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2288,
-                            "lat": 38.9166,
-                            "speed": 10.22
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2283,
-                            "lat": 38.9163,
-                            "speed": 9.74
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2278,
-                            "lat": 38.916,
-                            "speed": 6.91
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2276,
-                            "lat": 38.9159,
-                            "speed": 6.19
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2273,
-                            "lat": 38.9157,
-                            "speed": 2.97
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2273,
-                            "lat": 38.9156,
-                            "speed": 1.29
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2274,
-                            "lat": 38.9154,
-                            "speed": 3.89
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2275,
-                            "lat": 38.9154,
-                            "speed": 2.84
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2275,
-                            "lat": 38.9153,
-                            "speed": 0.21
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2276,
-                            "lat": 38.9153,
-                            "speed": 2.29
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2276,
-                            "lat": 38.9152,
-                            "speed": 2.03
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2278,
-                            "lat": 38.915,
-                            "speed": 3.46
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2279,
-                            "lat": 38.9149,
-                            "speed": 1.09
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.228,
-                            "lat": 38.9149,
-                            "speed": 0.2
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2281,
-                            "lat": 38.9149,
-                            "speed": 0.37
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2281,
-                            "lat": 38.9149,
-                            "speed": 0.15
-                        },
-                        {
-                            "locationDescription": "CarModeStopByDetectingWalking",
-                            "lng": -77.228,
-                            "lat": 38.9148,
-                            "speed": 1.16
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.228,
-                            "lat": 38.9148,
-                            "speed": 1.16
-                        },
-                        {
-                            "locationDescription": "TripStop",
-                            "lng": -77.228,
-                            "lat": 38.9148,
-                            "speed": 1.16
-                        },
-                        {
-                            "locationDescription": "TripStart",
-                            "lng": -77.2301,
-                            "lat": 38.9175,
-                            "speed": 9.68
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.23,
-                            "lat": 38.9174,
-                            "speed": 11.02
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2294,
-                            "lat": 38.917,
-                            "speed": 10.21
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2292,
-                            "lat": 38.9169,
-                            "speed": 2.86
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2288,
-                            "lat": 38.9166,
-                            "speed": 10.22
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2283,
-                            "lat": 38.9163,
-                            "speed": 9.74
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2278,
-                            "lat": 38.916,
-                            "speed": 6.91
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2276,
-                            "lat": 38.9159,
-                            "speed": 6.19
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2273,
-                            "lat": 38.9157,
-                            "speed": 2.97
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2273,
-                            "lat": 38.9156,
-                            "speed": 1.29
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2274,
-                            "lat": 38.9154,
-                            "speed": 3.89
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2275,
-                            "lat": 38.9154,
-                            "speed": 2.84
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2275,
-                            "lat": 38.9153,
-                            "speed": 0.21
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2276,
-                            "lat": 38.9153,
-                            "speed": 2.29
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2276,
-                            "lat": 38.9152,
-                            "speed": 2.03
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2278,
-                            "lat": 38.915,
-                            "speed": 3.46
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2279,
-                            "lat": 38.9149,
-                            "speed": 1.09
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.228,
-                            "lat": 38.9149,
-                            "speed": 0.2
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2281,
-                            "lat": 38.9149,
-                            "speed": 0.37
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.2281,
-                            "lat": 38.9149,
-                            "speed": 0.15
-                        },
-                        {
-                            "locationDescription": "CarModeStopByDetectingWalking",
-                            "lng": -77.228,
-                            "lat": 38.9148,
-                            "speed": 1.16
-                        },
-                        {
-                            "locationDescription": "LocationUpdate",
-                            "lng": -77.228,
-                            "lat": 38.9148,
-                            "speed": 1.16
-                        },
-                        {
-                            "locationDescription": "TripStop",
-                            "lng": -77.228,
-                            "lat": 38.9148,
-                            "speed": 1.16
-                        }
-
-                ]
+                {
+                    "locationDescription": "TripStart",
+                    "lng": -77.2301,
+                    "lat": 38.9175,
+                    "speed": 9.68
+                },
+                {
+                    "locationDescription": "LocationUpdate",
+                    "lng": -77.23,
+                    "lat": 38.9174,
+                    "speed": 11.02
+                },
+                {
+                    "locationDescription": "LocationUpdate",
+                    "lng": -77.2294,
+                    "lat": 38.917,
+                    "speed": 10.21
+                },
+                {
+                    "locationDescription": "LocationUpdate",
+                    "lng": -77.2292,
+                    "lat": 38.9169,
+                    "speed": 2.86
+                },
+                {
+                    "locationDescription": "LocationUpdate",
+                    "lng": -77.2288,
+                    "lat": 38.9166,
+                    "speed": 10.22
+                },
+                {
+                    "locationDescription": "LocationUpdate",
+                    "lng": -77.2283,
+                    "lat": 38.9163,
+                    "speed": 9.74
+                },
+                {
+                    "locationDescription": "LocationUpdate",
+                    "lng": -77.2278,
+                    "lat": 38.916,
+                    "speed": 6.91
+                },
+                {
+                    "locationDescription": "LocationUpdate",
+                    "lng": -77.2276,
+                    "lat": 38.9159,
+                    "speed": 6.19
+                },
+                {
+                    "locationDescription": "LocationUpdate",
+                    "lng": -77.2273,
+                    "lat": 38.9157,
+                    "speed": 2.97
+                },
+                {
+                    "locationDescription": "LocationUpdate",
+                    "lng": -77.2273,
+                    "lat": 38.9156,
+                    "speed": 1.29
+                },
+                {
+                    "locationDescription": "LocationUpdate",
+                    "lng": -77.2274,
+                    "lat": 38.9154,
+                    "speed": 3.89
+                },
+                {
+                    "locationDescription": "LocationUpdate",
+                    "lng": -77.2275,
+                    "lat": 38.9154,
+                    "speed": 2.84
+                },
+                {
+                    "locationDescription": "LocationUpdate",
+                    "lng": -77.2275,
+                    "lat": 38.9153,
+                    "speed": 0.21
+                },
+                {
+                    "locationDescription": "LocationUpdate",
+                    "lng": -77.2276,
+                    "lat": 38.9153,
+                    "speed": 2.29
+                },
+                {
+                    "locationDescription": "LocationUpdate",
+                    "lng": -77.2276,
+                    "lat": 38.9152,
+                    "speed": 2.03
+                },
+                {
+                    "locationDescription": "LocationUpdate",
+                    "lng": -77.2278,
+                    "lat": 38.915,
+                    "speed": 3.46
+                },
+                {
+                    "locationDescription": "LocationUpdate",
+                    "lng": -77.2279,
+                    "lat": 38.9149,
+                    "speed": 1.09
+                },
+                {
+                    "locationDescription": "LocationUpdate",
+                    "lng": -77.228,
+                    "lat": 38.9149,
+                    "speed": 0.2
+                },
+                {
+                    "locationDescription": "LocationUpdate",
+                    "lng": -77.2281,
+                    "lat": 38.9149,
+                    "speed": 0.37
+                },
+                {
+                    "locationDescription": "LocationUpdate",
+                    "lng": -77.2281,
+                    "lat": 38.9149,
+                    "speed": 0.15
+                },
+                {
+                    "locationDescription": "CarModeStopByDetectingWalking",
+                    "lng": -77.228,
+                    "lat": 38.9148,
+                    "speed": 1.16
+                },
+                {
+                    "locationDescription": "LocationUpdate",
+                    "lng": -77.228,
+                    "lat": 38.9148,
+                    "speed": 1.16
+                },
+                {
+                    "locationDescription": "TripStop",
+                    "lng": -77.228,
+                    "lat": 38.9148,
+                    "speed": 1.16
+                }
+            ]
         }
     ]

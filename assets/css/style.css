@@ -81,6 +81,7 @@ table,#events_table thead > tr > th, td {
 	border-collapse: collapse;
 	color: rgb(0, 0, 0);
 	text-align: center;
+	vertical-align: middle !important;
 }
 .social p{
 	float: right;
